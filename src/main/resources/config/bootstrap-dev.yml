@@ -1,0 +1,239 @@
+#本地开发环境,如果想要使用本配置信息,请在bootstrap.yml的spring.profiles.active设置为dev
+spring:
+  datasource:
+    default:
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://172.31.134.225:5432/ableads
+  redis:
+    type: standalone
+    standalone:
+      host: 172.31.134.225
+      port: 6379
+      database: 3
+      password:
+    cluster:
+      max-redirects: 3
+      nodes: 172.31.134.218:7001,172.31.134.218:7002,172.31.134.218:7003,172.31.134.218:7004,172.31.134.218:7005,172.31.134.218:7006
+      password:
+
+streaming:
+  #任务列表
+  tasks:
+    #工业互联网数据处理需要处理的任务，在这里可以配置多个任务运行(atd、gynetres、attack、dpi)
+    active: atd
+    #atd安全事件
+    atd:
+      source:
+        #源数据来源方式,目前支持(localfile,kafka)
+        active: kafka
+        #数据源存储在kafka中,如果服务器配置信息不存在，则会使用默认kafka配置信息
+        kafka:
+          brokers: 172.31.134.214:9092
+          topic: industry_atd_topic
+          groupid: industry_atd_group789
+          #startupMode: earliest_offset
+      sink:
+        #当前任务使用的激活存储方式,可以配置多个,目前支持(hive,elasticsearch,console,atdpurge)
+        active: elasticsearch,postgres,sftp_upload,hdfs
+        #es配置信息,如果不存在则使用es默认配置信息
+        elasticsearch:
+          index: industry_atd
+          alias: industry_atd
+          template: industry_atd_*
+          indexStragety: week
+        #hive配置信息,如果不存在则使用hive默认配置信息
+        hive:
+          #hive数据入库配置信息，insertinto 使用jdbc进行数据入库，loaddata 通过load data方式入库
+          table: t_ods_industry_atd
+          insertType: insertinto
+          dataPath: /data/industrystreaming/atd
+          hdfsPath: hdfs://172.31.134.216:9000/act/datastreaming/atd
+        #atd清洗数据存储
+        postgres:
+          table: t_ods_industry_atd
+        #sftp部省上报
+        sftp_upload:
+          path: E:/data/mumuflink/atd/sftp_upload
+          uploadDir: sftp/data/atd
+          fileType: txt
+          fileds: waId,eventTypeId,timestamp,sensorName,sensorIp,eventSource,uuid,rid,classtype,classtypeCn,category,categoryCn,subCategory,srcIp,srcPort,srcService,dstIp,dstPort,dstService,proto,appProto,killChain,killChainCn,payload,respData,severity,reliability,family,target,atdDesc,message,srcIpCountry,srcIpProvince,srcIpCity,srcIpCounty,srcIspName,srcIpGeoloc,srcIpCountryCode,standby15,dstIpCountry,dstIpProvince,dstIpCity,dstIpCounty,dstIspName,dstIpGeoloc,dstIpCountryCode,standby16,connSrcMac,connDstMac,connOrigBytes,connRespBytes,connOrigPkts,connRespPkts,connConnState,connDuration,httpMethod,httpHost,httpUri,httpReferrer,httpVersion,httpUserAgent,httpContentType,httpContentLength,httpStatusCode,dnsQuery,dnsQtypeName,dnsTtl,dnsAnswers,sumstatNumber,sumstatDuration,sumstatSample,standby5,standby6,standby7,standby8,standby9,ftpFtpCmd,smtpSmtpFrom,smtpSmtpTo,standby13,standby14,filePackage,fileSha256,fileSsdeep,fileFilename,fileTag,fileMd5,standby19,standby20,waCreateTime,id,corpId,corpName,industry,srcCorpId,srcCorpName,srcIndustry,beginTime,stopTime,srcIpValue,dstIpValue,streamMonitorInterface,severityCn,standby1,standby2,standby3,standby4,standby17,standby18,createTime,count,beginTimeStr,stopTimeStr,srcIpCountryFromIpNet,srcIpCountryCodeFromIpNet,srcIpProvinceFromIpNet,srcIpProvinceCodeFromIpNet,srcIpCityFromIpNet,srcIpCityCodeFromIpNet,dstIpCountryFromIpNet,dstIpCountryCodeFromIpNet,dstIpProvinceFromIpNet,dstIpProvinceCodeFromIpNet,dstIpCityFromIpNet,dstIpCityCodeFromIpNet,srcIpType,dstIpType,ipPortJoint,srcIpPort,ipJoint,dstIpPort,attackIp,attackPort,attackCountry,attackProvince,attackCity,attackCorpName,attackIndustry,attackGeoloc,attackedIp,attackedPort,attackedCountry,attackedProvince,attackedCity,attackedCorpName,attackedIndustry,attackedGeoloc,attackCorpType,attackedCorpType,uploadProvinceCode,uploadProvinceName,dataSource
+          uploadFields: eventTypeId,timestamp,classtypeCn,categoryCn,subCategory,srcPort,dstIp,dstPort,proto,appProto,killChainCn,severity,srcIpCountry,srcIpProvince,srcIpCity,dstIpCountry,dstIpProvince,dstIpCity,corpName,industry,srcCorpName,srcIndustry,severityCn,createTime,uploadProvinceCode,uploadProvinceName,dataSource
+        hdfs:
+          fileType: parquet
+          hdfsPath: hdfs://172.31.134.216:9000/act/datastreaming/atd
+        localfile:
+          fileType: json
+          path: E:/data/mumuflink/atd/avro
+        basefile:
+          path: E:/data/mumuflink/atd/basefile
+          fileType: avro
+    #资产探测
+    gynetres:
+      source:
+        #源数据来源方式,目前支持(localfile,kafka)
+        active: kafka
+        #数据源存储在kafka中,如果服务器配置信息不存在，则会使用默认kafka配置信息
+        kafka:
+          brokers: 172.31.132.20:9092
+          topic: industry_gynetres_topic
+          groupid: industry_gynetres_group1a1234568
+          requestTimeoutMs: 80000
+          startupMode: earliest_offset
+      sink:
+        #当前任务使用的激活存储方式,可以配置多个,目前支持(hive,elasticsearch,console,atdpurge)
+        active: h2dfs
+        #es配置信息,如果不存在则使用es默认配置信息
+        elasticsearch:
+          index: industry_gynetres_20191127
+          alias: industry_gynetres
+          template: industry_gynetres_*
+          indexStragety: fixed
+          #启用插入更新机制
+          scriptUpsert: true
+          scriptCounterField: counter
+          scriptUpdateField: update_time,nmap,device,ipoper,vendor,vendor_source,primary_type
+        #hive配置信息,如果不存在则使用hive默认配置信息
+        hive:
+          #hive数据入库配置信息，insertinto 使用jdbc进行数据入库，loaddata 通过load data方式入库
+          table: t_ods_industry_gynetres
+          insertType: insertinto
+        hdfs:
+          fileType: parquet
+          path: hdfs://172.31.134.216:9000/act/datastreaming/gynetres
+        h2dfs:
+          path: E:/data/mumuflink/gynetres/localfile
+          fileType: json
+    #dpi流量数据
+    dpi:
+      source:
+        #源数据来源方式,目前支持(localfile,kafka)
+        active: kafka
+        #数据源存储在kafka中,如果服务器配置信息不存在，则会使用默认kafka配置信息
+        kafka:
+          brokers: 172.31.134.225:9092
+          topic: industry_dpi
+          groupid: industry_dpi_group
+      sink:
+        #当前任务使用的激活存储方式,可以配置多个,目前支持(hive,elasticsearch,console,atdpurge)
+        active: elasticsearch,elasticsearch1,hive,sftp_upload
+        #es配置信息,如果不存在则使用es默认配置信息
+        elasticsearch:
+          index: industry_dpi_test
+          type: industry_dpi_type
+          alias: industry_dpi_type
+          template: industry_dpi_test_*
+          indexStragety: day
+        elasticsearch1:
+          index: industry_dpi_clean_test
+          type: industry_dpi_clean_type
+          alias: industry_dpi_clean_test
+          template: industry_dpi_clean_test_*
+          indexStragety: fixed
+          #更新标识字段,如果此字段值存在则更新整条文档
+          updateFlagField: primaryId
+        #hive配置信息,如果不存在则使用hive默认配置信息
+        hive:
+          #hive数据入库配置信息，insertinto 使用jdbc进行数据入库，loaddata 通过load data方式入库
+          table: t_ods_industry_dpi
+          insertType: loaddata
+          dataPath: E:/data/dataprocessing/storage/dpi
+          hdfsPath: hdfs://localhost:18020/tmp/industry/atd
+        sftp_upload:
+          uploadDir: sftp/data/dpi
+          fileType: txt
+          fileds: id,primaryId,srcIp,destIp,srcPort,destPort,service,upPackNum,upByteNum,downPackNum,downByteNum,srcCorpName,srcIndustry,destCorpName,destIndustry,dynamicField,url,data,deviceinfoPrimaryNamecn,deviceinfoSecondaryNamecn,deviceinfoVendor,deviceinfoServiceDesc,deviceinfoCloudPlatform,deviceinfoDeviceid,deviceinfoSn,deviceinfoMac,deviceinfoMd5,deviceinfoOs,deviceinfoSoftVersion,deviceinfoFirmwareVersion,deviceinfoIp,deviceinfoNumber,ipinfoCountry,ipinfoProvince,ipinfoCity,ipinfoOwner,ipinfoTimeZoneCity,ipinfoTimeZone,ipinfoAreaCode,ipinfoGlobalRoaming,ipinfoInternalCode,ipinfoStateCode,ipinfoOperator,ipinfoLongitude,ipinfoLatitude,ipinfoArea,destipinfoCountry,destipinfoProvince,destipinfoCity,destipinfoOwner,destipinfoTimeZoneCity,destipinfoTimeZone,destipinfoAreaCode,destipinfoGlobalRoaming,destipinfoInternalCode,destipinfoStateCode,destipinfoOperator,destipinfoLongitude,destipinfoLatitude,destipinfoArea,ds,uploadProvinceCode,uploadProvinceName,dataSource
+    #内置任务
+    buillin_atd:
+      config:
+        dataFlowType: streaming
+      source:
+        #源数据来源方式,目前支持(localfile,kafka)
+        active: basefile
+        #从elasticsearch获取数据
+        elasticsearch:
+          host: 192.168.63.36
+          clusterName: brmscluster
+          index: industry_gynetres_20190807
+          type: industry_gynetres
+          sortField: id
+        basefile:
+          fileType: json
+          #path: E:/data/mumuflink/atd/localfile/industry_gynetres/2019112119,E:/data/mumuflink/atd/localfile/industry_gynetres_etl
+          path: E:/data/mumuflink/atd/localfile/industry_gynetres_etl
+      sink:
+        #当前任务使用的激活存储方式,可以配置多个,目前支持(hive,elasticsearch,console,atdpurge)
+        active: elasticsearch
+        #es配置信息,如果不存在则使用es默认配置信息
+        localfile:
+          fileType: json
+          path: E:/data/mumuflink/gynetres/localfile/industry_gynetres
+        elasticsearch:
+          host: 192.168.63.36
+          clusterName: brmscluster
+          index: industry_gynetres_20190807
+          type: industry_gynetres
+          alias: industry_gynetres
+          template: industry_gynetres_*
+          indexStragety: fixed
+          #启用插入更新机制
+          scriptUpsert: true
+          scriptCounterField: counter
+          scriptUpdateField: update_time,nmap,device,ipoper,vendor,vendor_source,primary_type
+  #数据处理默认配置信息
+  defaults:
+    #默认的任务配置信息
+    config:
+      stateBackend: fs
+      checkpointInterval: 1m
+      asynchronousSnapshots: true
+      parallelism: 1
+      maxParallelism: 1
+      windowSize: 10m
+      slideSize: 1m
+      restartAttempts: 10
+      delayBetweenAttempts: 10m
+      checkpointDataUri: file:///E:/data/industrystreaming/checkpoints
+    #默认的kafka配置信息
+    kafka:
+      brokers: 172.31.134.51:6667,172.31.134.52:6667,172.31.134.53:6667
+    #默认的es服务器配置信息
+    elasticsearch:
+      host: 172.31.134.249
+      port: 9300
+      clusterName: elasticsearch
+    #默认的hive服务器配置信息
+    hive:
+      url: jdbc:hive2://172.31.134.216:10000/industry
+      driver: org.apache.hive.jdbc.HiveDriver
+      user: admin
+      password:
+      charset: utf-8
+    #ipbase接口地址信息
+    ipbase:
+      #url: http://172.31.131.62:19999/ipBase/selectByIp
+      url: http://172.31.132.20:9999/ipBase/selectByIp
+    #行业分类接口地址信息
+    industry:
+      #url: http://172.31.134.5:8890/apistore/company/companyInfo
+      url: http://39.98.202.40:8890/apistore/company/companyInfo
+      authorization: bearer 1c1ce451-6940-4c70-857b-cb35b4f29f9f
+    cache:
+      corpEnterprise:
+        prefix: INDUSTRY_ENTERPRISE_CORP
+        bucket: 200
+        expire: 7d
+      corpEnterpriseBase:
+        prefix: INDUSTRY_ENTERPRISE_BASE_CORP
+        bucket: 200
+        expire: 7d
+    sftp:
+      ip: 172.31.134.225
+      port: 22
+      user: docker
+      password: docker
+    provice:
+      code: 430000
+      name: 湖南
+      source: 0

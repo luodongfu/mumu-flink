@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovecws.mumu.flink.common.mapper.atd.SyslogDictMapper">
+
+    <!-- SELECT
+        severity as name,
+        level as namecn
+        FROM
+        tb_notice_thread_severity
+        WHERE
+        severity IS NOT NULL
+        AND level IS NOT NULL-->
+    <select id="getThreadSeverityDict" resultType="Map">
+        select severity_id as name,severity as namecn from t_ods_atd_orm group by severity_id,severity
+    </select>
+
+    <select id="getThreadTypeClassDict" resultType="Map">
+        SELECT
+        classtype_eng as name,
+        classtype_cn as namecn
+        FROM
+        tb_notice_thread_type
+        WHERE
+        classtype_eng IS NOT NULL
+        AND classtype_cn IS NOT NULL
+        GROUP BY
+        classtype_eng,
+        classtype_cn
+    </select>
+
+    <select id="getThreadTypeCategoryDict" resultType="Map">
+        SELECT
+        category as name,
+        thread_name as namecn
+        FROM
+        tb_notice_thread_type
+        WHERE
+        category IS NOT NULL
+        AND thread_name IS NOT NULL
+    </select>
+
+    <select id="getKillChainDict" resultType="Map">
+        SELECT
+        kill_chain_eng as name,
+        kill_chain_cn as namecn
+        FROM
+        tb_notice_kill_chain
+        WHERE
+        kill_chain_eng IS NOT NULL
+        AND kill_chain_cn IS NOT NULL
+    </select>
+
+    <select id="getThreadEngineDict" resultType="Map">
+        SELECT
+        level as name,
+        descript as namecn
+        FROM
+        tb_notice_thread_engine
+        WHERE
+        level IS NOT NULL
+        AND descript IS NOT NULL
+    </select>
+</mapper>

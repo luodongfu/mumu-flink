@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovecws.mumu.flink.common.mapper.atd.SyslogCorpMapper">
+
+    <select id="getCorpInfo" resultType="map" parameterType="Long">
+        SELECT
+        id AS corpid,
+        corp_name AS corpname,
+        industry As industry,
+        corp_type As corptype
+        FROM
+        tb_syslog_corp_dict t
+        WHERE
+        begin_ip_value <![CDATA[<=]]> #{ip} AND
+        end_ip_value <![CDATA[>=]]> #{ip}
+        limit 1
+    </select>
+
+    <select id="getCorpInfoFromBD" resultType="map" parameterType="Long">
+        SELECT
+        ib.companyname AS corpname,
+        eb.sub_industry_name As industry,
+        eb.companytypecategory As corptype
+        FROM
+        tb_ip_base ib
+        LEFT JOIN
+        tb_enterprise_base eb
+        ON
+        ib.companyname = eb.companyname
+        WHERE
+        ib.ipv4_value = #{ip} and ib.companyname != ''
+        limit 1
+    </select>
+</mapper>

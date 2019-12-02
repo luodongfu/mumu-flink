@@ -5,12 +5,17 @@ import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.java.io.TextInputFormat;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.functions.source.FileProcessingMode;
+import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.util.Collector;
+
+import javax.annotation.Nullable;
 
 public class WordCountStreaming {
 
@@ -25,14 +30,14 @@ public class WordCountStreaming {
             @Override
             public void flatMap(final String line, final Collector<Tuple2<String, Long>> collector) throws Exception {
                 for (String word : line.split("\\s+")) {
-                    collector.collect(new Tuple2<>(word.trim(), 1l));
+                    collector.collect(new Tuple2<>(word.trim(), 1L));
                 }
             }
         });
         SingleOutputStreamOperator<Tuple2<String, Long>> reduceStream = null;
         if (window) {
             reduceStream = outputStream.keyBy(0)
-                    //.countWindow(5)
+                    .countWindow(5)
                     .reduce(new ReduceFunction<Tuple2<String, Long>>() {
                         @Override
                         public Tuple2<String, Long> reduce(final Tuple2<String, Long> tuple2, final Tuple2<String, Long> tuple22) throws Exception {
@@ -52,13 +57,31 @@ public class WordCountStreaming {
      */
     public void file(String filePath) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        DataStreamSource<String> dataStream = env.readTextFile(filePath);
-        wordCount(dataStream, false);
+        //设置周期性水印的间隔
+        env.getConfig().setAutoWatermarkInterval(1000);
+        //按照事件事件来分窗口
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
+
+        //添加时间戳和水印
+        SingleOutputStreamOperator<String> streamOperator = env.readTextFile(filePath).assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks<String>() {
+            private final long maxOutOfOrderness = 3500; // 3.5 seconds
+            @Override
+            public Watermark getCurrentWatermark() {
+                return new Watermark(System.currentTimeMillis() - maxOutOfOrderness);
+            }
+
+            @Override
+            public long extractTimestamp(String element, long previousElementTimestamp) {
+                return 0L;
+            }
+        });
+        wordCount(streamOperator, false);
         env.execute("file WordCount");
     }
 
     /**
      * 持续监控一个文件 如果只是监控文件的生成 则没有问题 如果监控文件持续添加 则会出现重复问题
+     *
      * @param filePath
      */
     public void continuouslyFile(String filePath) throws Exception {
@@ -72,6 +95,8 @@ public class WordCountStreaming {
     }
 
     /**
+     * socket 实时流 nc -l 9999
+     *
      * @param hostname 192.168.11.25
      * @param port     9999
      */

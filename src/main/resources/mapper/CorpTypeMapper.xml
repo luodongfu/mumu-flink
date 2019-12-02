@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovecws.mumu.flink.common.mapper.atd.CorpTypeMapper">
+
+    <select id="getEnterpriseInfo" resultType="String" parameterType="String">
+        SELECT
+        companytypecategory
+        FROM
+        tb_enterprise t
+        WHERE
+        companyname = #{corpName}
+        limit 1
+    </select>
+</mapper>

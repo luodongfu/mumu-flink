@@ -15,7 +15,7 @@ public class WordCountBatchTest {
 
     @Test
     public void textFile() throws Exception {
-        wordCountBatch.textFile("hdfs://192.168.11.25:9000/mumu/spark/file");
+        wordCountBatch.textFile("E:\\data\\mumuflink\\atd\\localfile");
     }
 
     @Test

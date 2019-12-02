@@ -80,6 +80,10 @@ public class WordCountTable {
                 .orderBy("frequency");
         DataSet<WC> result = tableEnvironment.toDataSet(filtered, WC.class);
         result.print();
+
+        tableEnvironment.registerTable("wc", table);
+        Table sql = tableEnvironment.sqlQuery("select *from wc");
+        tableEnvironment.toDataSet(sql, WC.class).print();
     }
 
     public static class WC {

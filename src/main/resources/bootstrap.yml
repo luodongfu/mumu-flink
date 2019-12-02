@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: act-industry-data-streaming
+  profiles:
+    active: dev

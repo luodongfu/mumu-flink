@@ -13,7 +13,7 @@ public class WordCountStreamingTest {
 
     @Test
     public void file() throws Exception {
-        wordCountStreaming.file("hdfs://192.168.11.25:9000/mumu/spark/file");
+        wordCountStreaming.file("E:\\data\\hive\\min=9");
     }
 
     @Test

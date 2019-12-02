@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovecws.mumu.flink.common.mapper.atd.CloudPlatformMapper">
+
+    <select id="getCloudPlatformNameByIp" resultType="String" parameterType="Long">
+        SELECT
+        cp.name
+        FROM
+        tb_cloud_platform cp
+        LEFT JOIN
+        tb_cloud_platform_ip cpip
+        ON
+        cp.ip_id = cpip.ip_id
+        WHERE
+        cpip.begin_ip_long <![CDATA[<=]]> #{ip} AND
+        cpip.end_ip_long <![CDATA[>=]]> #{ip}
+        limit 1
+    </select>
+</mapper>
