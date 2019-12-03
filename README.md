@@ -7,7 +7,7 @@ Apache Flink是一个面向分布式数据流处理和批量数据处理的开�
 提供支持流处理和批处理两种类型应用的功能。现有的开源计算方案，会把流处理和批处理作为两种不同的应用类型，因为他们它
 们所提供的SLA是完全不相同的：流处理一般需要支持低延迟、Exactly-once保证，而批处理需要支持高吞吐、高效处理，所以在实
 现的时候通常是分别给出两套实现方法，或者通过一个独立的开源框架来实现其中每一种处理方案。例如，实现批处理的开源方案有
-MapReduce、Tez、Crunch、spark，实现流处理的开源方案有Samza、Storm。
+MapReduce、Tez、Crunch、spark，实现流处理的开源方案有Samza、Storm和spark Streaming。
 
 Flink流处理特性：
 

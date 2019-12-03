@@ -2,7 +2,6 @@ package com.lovecws.mumu.flink.bacth;
 
 import com.lovecws.mumu.flink.MumuFlinkConfiguration;
 import org.apache.commons.lang3.RandomUtils;
-import org.apache.flink.api.common.accumulators.Accumulator;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
@@ -12,7 +11,6 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Collector;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -33,7 +31,6 @@ public class BroadcastBatch {
             public void open(final Configuration parameters) throws Exception {
                 broadcastSet = getRuntimeContext().getBroadcastVariable("broadCastSet");
                 super.open(parameters);
-                Accumulator<Object, Serializable> accumulator = getRuntimeContext().getAccumulator("acc");
             }
 
             @Override
@@ -46,8 +43,9 @@ public class BroadcastBatch {
 
         DataSet<Integer> toBroadcast = executionEnvironment.fromElements(1, 2, 3);
         broadCastMap.withBroadcastSet(toBroadcast, "broadCastSet");
-        
+
         AggregateOperator<Tuple2<String, Integer>> aggregateOperator = broadCastMap.groupBy(0).sum(1);
         aggregateOperator.print();
+
     }
 }

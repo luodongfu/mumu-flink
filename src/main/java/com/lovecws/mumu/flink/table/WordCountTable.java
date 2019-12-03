@@ -21,7 +21,7 @@ public class WordCountTable {
 
     public void wordCount() throws Exception {
         ExecutionEnvironment executionEnvironment = ExecutionEnvironment.createCollectionsEnvironment();
-        BatchTableEnvironment tableEnvironment = TableEnvironment.getTableEnvironment(executionEnvironment);
+        BatchTableEnvironment tableEnvironment = BatchTableEnvironment.create(executionEnvironment);
 
         DataSet<WC> input = executionEnvironment.fromElements(
                 new WC("Hello", 1),
@@ -44,7 +44,7 @@ public class WordCountTable {
 
     public void sqlQuery() throws Exception {
         ExecutionEnvironment executionEnvironment = ExecutionEnvironment.createCollectionsEnvironment();
-        BatchTableEnvironment tableEnvironment = TableEnvironment.getTableEnvironment(executionEnvironment);
+        BatchTableEnvironment tableEnvironment = BatchTableEnvironment.create(executionEnvironment);
 
         DataSet<WC> input = executionEnvironment.fromElements(
                 new WC("Hello", 1),
@@ -61,7 +61,7 @@ public class WordCountTable {
 
     public void textFile(String filePath) throws Exception {
         ExecutionEnvironment executionEnvironment = ExecutionEnvironment.createCollectionsEnvironment();
-        BatchTableEnvironment tableEnvironment = TableEnvironment.getTableEnvironment(executionEnvironment);
+        BatchTableEnvironment tableEnvironment = BatchTableEnvironment.create(executionEnvironment);
         DataSet<String> dataSet = executionEnvironment.readTextFile(filePath);
         FlatMapOperator<String, WC> flatMapOperator = dataSet.flatMap(new FlatMapFunction<String, WC>() {
             @Override
