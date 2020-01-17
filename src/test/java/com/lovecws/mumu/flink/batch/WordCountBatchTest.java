@@ -20,6 +20,6 @@ public class WordCountBatchTest {
 
     @Test
     public void fromElements() throws Exception {
-        wordCountBatch.fromElements("lovecws", "love", "babymm  lovecws","love  ");
+        wordCountBatch.fromElements("lovecws love cws");
     }
 }

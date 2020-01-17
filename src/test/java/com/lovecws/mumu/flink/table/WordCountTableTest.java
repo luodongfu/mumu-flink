@@ -21,9 +21,4 @@ public class WordCountTableTest {
     public void sqlQuery() throws Exception {
         wordCountTable.sqlQuery();
     }
-
-    @Test
-    public void textFile() throws Exception {
-        wordCountTable.textFile("hdfs://192.168.11.25:9000/mumu/spark/file");
-    }
 }
