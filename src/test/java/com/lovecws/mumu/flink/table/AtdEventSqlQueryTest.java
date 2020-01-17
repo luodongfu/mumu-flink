@@ -14,6 +14,16 @@ public class AtdEventSqlQueryTest {
 
     @Test
     public void sqlQuery() {
-        atdEventSqlQuery.sqlQuery("E:\\data\\mumuflink\\atd\\localfile\\2019112109","E:\\data\\mumuflink");
+        atdEventSqlQuery.sqlQuery("E:\\data\\mumuflink\\atd\\localfile\\2019112109", "E:\\data\\mumuflink");
+    }
+
+    @Test
+    public void atdSqlQuery() {
+        atdEventSqlQuery.atdSqlQuery("E:\\data\\mumuflink\\atd\\localfile\\2019112109\\part-0-0");
+    }
+
+    @Test
+    public void atdTableQuery() {
+        atdEventSqlQuery.atdTableQuery("E:\\data\\mumuflink\\atd\\localfile\\2019112109\\part-0-0");
     }
 }

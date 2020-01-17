@@ -1,5 +1,7 @@
 # day day up
+
 ## 技术站点
+
 Hacker News：非常棒的针对编程的链接聚合网站
 Programming reddit：同上
 MSDN：微软相关的官方技术集中地，主要是文档类
@@ -50,7 +52,7 @@ HAR Viewer: HAR分析工具
 protractor：E2E（end to end）自动化测试工具
 
 
-##Web 前端相关
+## Web 前端相关
 
 GRUNT: js task runner
 Sea.js: js模块化
@@ -96,7 +98,7 @@ Emmet:前端工程师必备，ZenCode的前身
 MagicDraw:Uml图工具
 
 
-##大数据处理/数据分析/分布式工具
+## 大数据处理/数据分析/分布式工具
 
 Hadoop：分布式的文件系统，结合其MapReduce编程模型可以用来做海量数据的批处理（Hive，Pig，HBase啥的就不说了），值得介绍的是- Cloudera的Hadoop分支CDH5，基于YARN MRv2集成了Spark可直接用于生产环境的Hadoop，对于企业快速构建数据仓库非常有用。
 Ceph:Linux分布式文件系统（特点：无中心）
@@ -134,7 +136,10 @@ Eric,Eclipse+pydev,比较不错的Python IDE
 numpy:科学计算包，主要用来处理大型矩阵计算等，此外还有SciPy，Matplotlib
 GUI相关：PyQt，PyQwt
 supervisor:进程监控工具
-Java相关
+
+
+## Java相关
+
 常用的IDE：IntelliJ IDEA，Eclipse，Netbeans
 Web开发相关：Tomcat、Resin、Jetty、WebLogic等，常用的组件Struts，Spring
 HibernateNetty: 异步事件驱动网络应用编程框架，用于高并发网络编程比较好（NIO框架）
