@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: atd清洗表
  * @author: 甘亮
  * @create: 2019-05-29 09:43

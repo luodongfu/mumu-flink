@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: hive的jdbc服务测试
  * @author: 甘亮
  * @create: 2019-06-11 11:31

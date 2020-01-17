@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: parquet列式文件存储
  * @author: 甘亮
  * @create: 2019-06-12 09:07

@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: SequenceFile工具类，对
  * @author: 甘亮
  * @create: 2019-06-21 14:36

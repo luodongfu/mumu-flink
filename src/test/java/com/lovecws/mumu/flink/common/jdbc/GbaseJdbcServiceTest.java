@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 基础jdbc服务
  * @author: 甘亮
  * @create: 2019-06-14 11:04

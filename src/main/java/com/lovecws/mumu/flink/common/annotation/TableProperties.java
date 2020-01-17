@@ -3,7 +3,7 @@ package com.lovecws.mumu.flink.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: hive表字段属性 存储方式 字符换行符等属性
  * @author: 甘亮
  * @create: 2019-05-29 16:14

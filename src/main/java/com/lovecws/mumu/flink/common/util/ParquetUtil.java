@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: parquet工具类，提供根据数据模型获取parquet的schema方法、读parquet文件、写parquet文件、合并同类型parquet文件
  * @author: 甘亮
  * @create: 2019-06-11 18:22

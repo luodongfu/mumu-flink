@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.zip.Deflater;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: avro工具类
  * @author: 甘亮
  * @create: 2019-06-06 10:04

@@ -10,7 +10,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: cnvd漏洞库模型
  * @author: 甘亮
  * @create: 2019-06-06 13:09

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 读取写入rcfile orcfile
  * @author: 甘亮
  * @create: 2019-06-21 17:11

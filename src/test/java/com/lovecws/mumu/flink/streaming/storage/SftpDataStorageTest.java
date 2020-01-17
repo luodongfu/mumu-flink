@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: atd清洗表存储测试
  * @author: 甘亮
  * @create: 2019-06-12 15:29

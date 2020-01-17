@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: cnvd服务
  * @author: 甘亮
  * @create: 2019-06-06 13:07

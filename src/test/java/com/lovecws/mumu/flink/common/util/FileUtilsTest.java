@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: FileUtils测试类
  * @author: 甘亮
  * @create: 2019-06-20 17:21

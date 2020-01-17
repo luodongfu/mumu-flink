@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 云企业presto客户端
  * @author: 甘亮
  * @create: 2019-02-20 17:23

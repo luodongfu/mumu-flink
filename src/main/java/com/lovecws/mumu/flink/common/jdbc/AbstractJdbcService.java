@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 抽象jdbc服务
  * @author: 甘亮
  * @create: 2019-05-29 14:23

@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: Postgre服务测试
  * @author: 甘亮
  * @create: 2019-06-12 14:17

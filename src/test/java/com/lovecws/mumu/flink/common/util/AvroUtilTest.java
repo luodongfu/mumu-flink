@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: AvroUtil测试类
  * @author: 甘亮
  * @create: 2019-06-21 09:28

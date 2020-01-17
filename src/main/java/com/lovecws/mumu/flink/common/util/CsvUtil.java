@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: csv文件工具类，读取csv文件、写入csv文件
  * @author: 甘亮
  * @create: 2019-06-18 18:52

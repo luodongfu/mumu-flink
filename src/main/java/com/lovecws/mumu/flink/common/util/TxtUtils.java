@@ -262,9 +262,7 @@ public class TxtUtils {
 
     public static void main(String[] args) throws FileNotFoundException {
         AtomicLong counter = new AtomicLong();
-        String path = "E:\\project\\workspace2019\\act-able\\code\\act-able\\trunk\\act-able-ads-modules\\act-industry-data\\act-industry-data-processing\\src";
-        path = "E:\\project\\workspace2019\\act-able\\code\\act-able\\trunk\\act-able-ads-modules\\act-industry-data";
-//        path = "E:\\project\\act-telecom\\gynet\\TD1701001_ads\\ads\\able-trunk\\springcloud_able\\act-able-ads-modules";
+        String path = "src";
         Collection<File> files = FileUtils.listFiles(new File(path), new String[]{"java"}, true);
         for (File file : files) {
 

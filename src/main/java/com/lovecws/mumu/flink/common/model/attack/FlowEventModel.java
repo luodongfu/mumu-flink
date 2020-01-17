@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 报警数据模型
  * @author: 甘亮
  * @create: 2019-06-13 09:37

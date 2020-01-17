@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 基础资源接口查询
  * @author: 甘亮
  * @create: 2019-06-10 17:23

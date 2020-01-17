@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: ${description}
  * @author: 甘亮
  * @create: 2019-11-26 15:33

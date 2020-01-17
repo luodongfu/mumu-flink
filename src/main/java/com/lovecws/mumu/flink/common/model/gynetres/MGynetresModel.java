@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 资产探测数据模型
  * AvroField字段注解 标注从kafka数据源avro字段
  * EsField 字段注解 标注这个字段需要保存到es

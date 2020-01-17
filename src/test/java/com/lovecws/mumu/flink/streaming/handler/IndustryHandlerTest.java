@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 行业分类接口测试
  * @author: 甘亮
  * @create: 2019-06-10 17:23

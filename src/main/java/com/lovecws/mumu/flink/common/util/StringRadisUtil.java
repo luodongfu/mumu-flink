@@ -1,7 +1,7 @@
 package com.lovecws.mumu.flink.common.util;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 字符串进制转换工具类
  * @author: 甘亮
  * @create: 2019-07-16 16:39

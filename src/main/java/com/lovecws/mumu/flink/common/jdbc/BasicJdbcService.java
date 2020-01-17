@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: ${description}
  * @author: 甘亮
  * @create: 2019-05-24 17:42

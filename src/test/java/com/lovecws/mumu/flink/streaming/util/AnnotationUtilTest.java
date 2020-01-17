@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 注解工具类测试
  * @author: 甘亮
  * @create: 2019-07-18 19:54

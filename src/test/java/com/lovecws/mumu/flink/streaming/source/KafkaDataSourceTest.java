@@ -37,7 +37,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: kafka数据来源测试
  * @author: 甘亮
  * @create: 2019-05-31 09:27

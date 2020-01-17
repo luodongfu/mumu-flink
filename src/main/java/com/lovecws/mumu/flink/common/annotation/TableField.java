@@ -3,7 +3,7 @@ package com.lovecws.mumu.flink.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 数据库字段注解
  * @author: 甘亮
  * @create: 2019-05-29 16:13

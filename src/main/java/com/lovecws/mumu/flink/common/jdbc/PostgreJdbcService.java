@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: pg存储，读取模型的TableField注解信息
  * @author: 甘亮
  * @create: 2019-05-24 17:42

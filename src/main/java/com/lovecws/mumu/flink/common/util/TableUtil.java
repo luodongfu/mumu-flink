@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 字段工具类
  * @author: 甘亮
  * @create: 2019-06-03 13:26

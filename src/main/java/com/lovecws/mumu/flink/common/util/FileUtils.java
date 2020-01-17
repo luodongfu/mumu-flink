@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 文件工具类
  * @author: 甘亮
  * @create: 2019-06-20 15:33

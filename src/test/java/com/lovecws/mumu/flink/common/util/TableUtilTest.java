@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: tableUtil工具类测试
  * @author: 甘亮
  * @create: 2019-06-19 10:08

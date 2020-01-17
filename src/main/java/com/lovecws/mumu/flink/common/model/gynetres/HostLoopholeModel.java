@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import java.util.Date;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 主机漏洞模型
  * @author: 甘亮
  * @create: 2018-12-04 15:33

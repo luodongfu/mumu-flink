@@ -4,7 +4,7 @@ import com.google.common.escape.Escaper;
 import com.google.common.escape.Escapers;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: 过滤特殊字符
  * @author: 甘亮
  * @create: 2019-06-20 11:32

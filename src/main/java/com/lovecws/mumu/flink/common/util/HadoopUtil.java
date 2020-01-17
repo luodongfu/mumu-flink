@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import java.net.URI;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: hadoop获取hdfs工具
  * @author: 甘亮
  * @create: 2019-11-25 09:28

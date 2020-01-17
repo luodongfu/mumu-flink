@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * @program: act-able
+ * @program: mumu-flink
  * @description: SequenceFileUtil工具类测试
  * @author: 甘亮
  * @create: 2019-06-21 15:25
